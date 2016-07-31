@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.alex.testtask.data.CityInfo;
 import com.example.alex.testtask.R;
+import com.example.alex.testtask.data.CityInfo;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,11 +23,7 @@ public class RecyclerViewCityAdapter extends RecyclerView.Adapter {
         this.mCityInfo = mCityInfo;
         this.mContext = context;
     }
-
-    public void setNewList(List<CityInfo> list) {
-        this.mCityInfo = list;
-    }
-
+    
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, null));
@@ -66,13 +62,13 @@ public class RecyclerViewCityAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View view) {
-            if(mMyOnItemClickListener != null) {
+            if (mMyOnItemClickListener != null) {
                 mMyOnItemClickListener.onItemClick(view, getAdapterPosition());
             }
         }
     }
 
     public interface MyOnItemClickListener {
-        void onItemClick(View view , int position);
+        void onItemClick(View view, int position);
     }
 }

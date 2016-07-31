@@ -150,9 +150,6 @@ public class RecyclerFragment extends BaseFragment implements View.OnClickListen
                 mRealm.commitTransaction();
 
                 mCityInfo.add(cityInfo);
-
-//                mCityInfo = new ArrayList<>(mRealm.where(CityInfo.class).findAll());
-//                mRecyclerViewCityAdapter.setNewList(mCityInfo);
                 mRecyclerViewCityAdapter.notifyDataSetChanged();
             }
         }.execute();

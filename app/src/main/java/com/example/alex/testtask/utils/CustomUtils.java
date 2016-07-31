@@ -2,8 +2,6 @@ package com.example.alex.testtask.utils;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 
 import java.text.SimpleDateFormat;
 
@@ -37,23 +35,6 @@ public class CustomUtils {
                 "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW",
                 "N"};
         return directions[(int) Math.floor(((bearing + 11.25) % 360) / 22.5)];
-    }
-
-    public static boolean hasConnection(Context context) {
-        boolean haveConnectedWifi = false;
-        boolean haveConnectedMobile = false;
-
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
-        for (NetworkInfo ni : netInfo) {
-            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
-                if (ni.isConnected())
-                    haveConnectedWifi = true;
-            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
-                if (ni.isConnected())
-                    haveConnectedMobile = true;
-        }
-        return haveConnectedWifi || haveConnectedMobile;
     }
 
     public static boolean isPortrait(Context context) {

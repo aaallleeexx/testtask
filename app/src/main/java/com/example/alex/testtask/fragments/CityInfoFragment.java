@@ -47,6 +47,7 @@ public class CityInfoFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mLlContainer = (LinearLayout) view.findViewById(R.id.forecast_date_ll_container);
         TextView cityName = (TextView) view.findViewById(R.id.cityName);
         ImageView weatherIcon = (ImageView) view.findViewById(R.id.cityIcon);
         TextView temp = (TextView) view.findViewById(R.id.cityTempreture);
@@ -78,7 +79,6 @@ public class CityInfoFragment extends BaseFragment {
             coord.setText(mCityInfo.getFormattedPos());
         }
 
-        mLlContainer = (LinearLayout) view.findViewById(R.id.forecast_date_ll_container);
         mFabButton.setVisibility(View.GONE);
     }
 
