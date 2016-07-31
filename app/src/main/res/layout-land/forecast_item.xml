@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="6dp">
+
+    <ImageView
+        android:id="@+id/forecast_icon"
+        android:layout_width="18sp"
+        android:layout_height="18sp" />
+    
+    <TextView
+        android:textSize="12sp"
+        android:layout_marginLeft="6dp"
+        android:text="30 jun"
+        android:id="@+id/forecast_date"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_alignTop="@+id/forecast_icon"
+        android:layout_toRightOf="@+id/forecast_icon"
+        android:layout_toEndOf="@+id/forecast_icon" />
+
+    <TextView
+        android:textSize="10sp"
+        android:layout_marginLeft="6dp"
+        android:text="16C"
+        android:id="@+id/forecast_temp_min"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_below="@+id/forecast_icon" />
+
+    <TextView
+        android:textSize="10sp"
+        android:text="29C"
+        android:id="@+id/forecast_temp_max"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginLeft="6dp"
+        android:layout_alignTop="@+id/forecast_temp_min"
+        android:layout_alignLeft="@+id/forecast_date"
+        android:layout_alignStart="@+id/forecast_date" />
+
+</RelativeLayout>
