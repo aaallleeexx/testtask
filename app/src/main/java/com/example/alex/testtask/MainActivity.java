@@ -8,17 +8,25 @@ import android.view.Gravity;
 
 import com.example.alex.testtask.fragments.RecyclerFragment;
 import com.example.alex.testtask.view.FloatingActionButton;
+import com.facebook.FacebookSdk;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class MainActivity extends AppCompatActivity {
     private FloatingActionButton mFabButton;
+    private Realm mRealm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            showFragment(new RecyclerFragment(), "Recycle", true);
+            showFragment(new RecyclerFragment(), RecyclerFragment.class.toString(), true);
         }
+
+        mRealm = Realm.getInstance(new RealmConfiguration.Builder(this).build());
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
         mFabButton = new FloatingActionButton.Builder(this)
                 .withDrawable(getResources().getDrawable(R.drawable.ic_add_circle_outline))
@@ -41,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
     public FloatingActionButton getFAB() {
         return mFabButton;
+    }
+
+    public Realm getmRealm() {
+        return mRealm;
     }
 
     @Override

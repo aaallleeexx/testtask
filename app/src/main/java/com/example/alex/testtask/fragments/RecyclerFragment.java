@@ -25,16 +25,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-
 public class RecyclerFragment extends BaseFragment implements View.OnClickListener, RecyclerViewCityAdapter.MyOnItemClickListener {
     public static final int CITY_NAME_REQUEST_CODE = 1000;
 
     private ArrayList<CityInfo> mCityInfo;
     private String[] mCityName = {"Kiev", "Lvov"};
     private RecyclerViewCityAdapter mRecyclerViewCityAdapter;
-    private Realm mRealm;
+
 
     @Nullable
     @Override
@@ -46,7 +43,6 @@ public class RecyclerFragment extends BaseFragment implements View.OnClickListen
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mRealm = Realm.getInstance(new RealmConfiguration.Builder(getContext()).build());
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
         mFabButton.setOnClickListener(this);
@@ -117,7 +113,7 @@ public class RecyclerFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onItemClick(View view, int position) {
         ((MainActivity) getActivity()).showFragment(CityInfoFragment.newInstance(mCityInfo.get(position)),
-                "CityInfoFragment", true);
+                CityInfoFragment.class.toString(), true);
     }
 
     private void tryGetWeather(final String name) {
@@ -153,10 +149,5 @@ public class RecyclerFragment extends BaseFragment implements View.OnClickListen
                 mRecyclerViewCityAdapter.notifyDataSetChanged();
             }
         }.execute();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 }

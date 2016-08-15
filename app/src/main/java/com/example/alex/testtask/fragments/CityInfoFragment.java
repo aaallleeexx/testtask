@@ -1,9 +1,9 @@
 package com.example.alex.testtask.fragments;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,21 +16,24 @@ import com.example.alex.testtask.data.CityInfo;
 import com.example.alex.testtask.data.ForecastData;
 import com.example.alex.testtask.utils.CustomUtils;
 import com.example.alex.testtask.web.Web;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class CityInfoFragment extends BaseFragment {
+public class CityInfoFragment extends BaseFragment implements View.OnClickListener {
     private static final String ENTER_ARGS_KEY = "city_info_fragment_enter_args_key";
-    private RecyclerView mRecyclerView;
     private ArrayList<ForecastData> list = new ArrayList<>();
     private LinearLayout mLlContainer;
+    private ShareDialog mShareDialog;
+    private CityInfo mCityInfo;
 
     public static CityInfoFragment newInstance(CityInfo cityInfo) {
         Bundle args = new Bundle();
-        args.putSerializable(ENTER_ARGS_KEY, cityInfo);
+        args.putParcelable(ENTER_ARGS_KEY, cityInfo);
 
         CityInfoFragment fragment = new CityInfoFragment();
         fragment.setArguments(args);
@@ -47,6 +50,8 @@ public class CityInfoFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mShareDialog = new ShareDialog(this);
+
         mLlContainer = (LinearLayout) view.findViewById(R.id.forecast_date_ll_container);
         TextView cityName = (TextView) view.findViewById(R.id.cityName);
         ImageView weatherIcon = (ImageView) view.findViewById(R.id.cityIcon);
@@ -60,9 +65,10 @@ public class CityInfoFragment extends BaseFragment {
         TextView sunrise = (TextView) view.findViewById(R.id.citySunrise);
         TextView sunset = (TextView) view.findViewById(R.id.citySunset);
         TextView coord = (TextView) view.findViewById(R.id.cityGeo);
+        view.findViewById(R.id.city_info_share_button).setOnClickListener(this);
 
         if (getArguments() != null) {
-            CityInfo mCityInfo = (CityInfo) getArguments().getSerializable(ENTER_ARGS_KEY);
+            mCityInfo = getArguments().getParcelable(ENTER_ARGS_KEY);
             tryToGetForecastData(mCityInfo.getCityName());
 
             Picasso.with(getActivity()).load(mCityInfo.getWeatherIconURL()).into(weatherIcon);
@@ -118,5 +124,19 @@ public class CityInfoFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
         mFabButton.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (ShareDialog.canShow(ShareLinkContent.class)) {
+            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                    .setContentTitle("Share weather message")
+                    .setContentDescription("Sharing weather of " + mCityInfo.getCityName())
+                    .setContentUrl(Uri.parse(Web.SHARE_URL + mCityInfo.getCityId()))
+                    .setImageUrl(Uri.parse(Web.OPEN_WEATHER_ICON_URL))
+                    .build();
+
+            mShareDialog.show(linkContent);
+        }
     }
 }

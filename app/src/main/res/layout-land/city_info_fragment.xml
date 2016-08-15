@@ -10,18 +10,33 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="1.2"
         android:orientation="vertical"
         android:paddingRight="8dp">
 
-        <TextView
-            android:id="@+id/cityName"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:gravity="center|left"
-            android:text="Kiev, UA"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/city_info_share_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="8dp"
+                android:src="@android:drawable/ic_menu_share" />
+
+            <TextView
+                android:id="@+id/cityName"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center|left"
+                android:text="Kiev, UA"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -248,12 +263,12 @@
 
 
     <LinearLayout
-        android:layout_marginLeft="16dp"
         android:id="@+id/forecast_date_ll_container"
-        android:orientation="vertical"
         android:layout_width="0dp"
-        android:layout_weight="0.4"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_weight="0.3"
+        android:orientation="vertical">
 
     </LinearLayout>
 

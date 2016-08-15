@@ -23,7 +23,7 @@ public class RecyclerViewCityAdapter extends RecyclerView.Adapter {
         this.mCityInfo = mCityInfo;
         this.mContext = context;
     }
-    
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, null));
@@ -57,6 +57,7 @@ public class RecyclerViewCityAdapter extends RecyclerView.Adapter {
             tvCityName = (TextView) itemView.findViewById(R.id.recycler_tv_city_name);
             tvTemperature = (TextView) itemView.findViewById(R.id.recycler_tv_temperature);
             ivIcon = (ImageView) itemView.findViewById(R.id.recycler_weather_icon);
+
             itemView.setOnClickListener(this);
         }
 

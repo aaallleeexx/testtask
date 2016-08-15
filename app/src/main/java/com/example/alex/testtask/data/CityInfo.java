@@ -1,6 +1,7 @@
 package com.example.alex.testtask.data;
 
-import android.util.Log;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.example.alex.testtask.exceptions.CityNotFoundException;
 import com.example.alex.testtask.web.Web;
@@ -8,8 +9,6 @@ import com.example.alex.testtask.web.Web;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.Serializable;
 
 import io.realm.RealmObject;
 
@@ -62,7 +61,7 @@ lastupdate
 lastupdate.value Last time when data was updated
  */
 
-public class CityInfo extends RealmObject implements Serializable {
+public class CityInfo extends RealmObject implements Parcelable {
 
     private int cityId;
     private String cityName;
@@ -250,5 +249,15 @@ public class CityInfo extends RealmObject implements Serializable {
 
     public String getCountry() {
         return country;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }

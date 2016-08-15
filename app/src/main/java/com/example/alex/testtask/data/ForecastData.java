@@ -62,7 +62,7 @@ public class ForecastData {
     }
 
     public String getFormattedDate() {
-        return CustomUtils.getMMMDate(dt);
+        return CustomUtils.getMMDate(dt);
     }
 
     public String getWeatherIcon() {

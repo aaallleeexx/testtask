@@ -7,15 +7,15 @@ import java.text.SimpleDateFormat;
 
 public class CustomUtils {
     public static String getDate(long time) {
-        return getDate("yyyy.MMM.d H:mm", time);
+        return getDate("yyyy.MM.d H:mm", time);
     }
 
-    public static String getMMMDate(long time) {
-        return getDate("MMM.d", time);
+    public static String getMMDate(long time) {
+        return getDate("MM.d", time);
     }
 
     public static String getMMMHmmDate(long time) {
-        return getDate("MMM.d H:mm", time);
+        return getDate("MMMd H:mm", time);
     }
 
     public static String getDate(String format, long time) {
